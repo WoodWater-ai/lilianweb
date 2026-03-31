@@ -1,0 +1,140 @@
+- generic [ref=e1]:
+  - generic [ref=e31]:
+    - generic [ref=e33]:
+      - generic [ref=e34]:
+        - img [ref=e36]
+        - generic [ref=e40]: 礼品兑换系统
+      - navigation [ref=e42]:
+        - generic [ref=e43]:
+          - heading "概览" [level=3] [ref=e44]
+          - link "控制台" [ref=e46] [cursor=pointer]:
+            - /url: /
+            - img [ref=e47]
+            - text: 控制台
+        - generic [ref=e52]:
+          - heading "组织架构" [level=3] [ref=e53]
+          - link "渠道管理" [active] [ref=e55] [cursor=pointer]:
+            - /url: /channels
+            - img [ref=e56]
+            - text: 渠道管理
+        - generic [ref=e60]:
+          - heading "系统管理" [level=3] [ref=e61]
+          - generic [ref=e62]:
+            - link "公告管理" [ref=e63] [cursor=pointer]:
+              - /url: /announcements
+              - img [ref=e64]
+              - text: 公告管理
+            - link "角色管理" [ref=e67] [cursor=pointer]:
+              - /url: /roles
+              - img [ref=e68]
+              - text: 角色管理
+            - link "账号管理" [ref=e70] [cursor=pointer]:
+              - /url: /users
+              - img [ref=e71]
+              - text: 账号管理
+      - paragraph [ref=e77]: V 1.2.0 Build 2023
+    - generic [ref=e78]:
+      - banner [ref=e80]:
+        - heading "控制台" [level=1] [ref=e82]
+        - generic [ref=e83]:
+          - generic [ref=e84]:
+            - generic:
+              - img
+            - textbox "搜索..." [ref=e85]
+          - button [ref=e86]:
+            - img [ref=e87]
+          - generic [ref=e91]:
+            - generic [ref=e92]:
+              - img [ref=e94]
+              - generic [ref=e97]:
+                - generic [ref=e98]: 管理员
+                - generic [ref=e99]: 系统超级管理员
+            - button "退出登录" [ref=e100]:
+              - img [ref=e101]
+      - main [ref=e104]:
+        - generic [ref=e350]:
+          - generic [ref=e351]:
+            - generic [ref=e352]:
+              - heading "渠道管理" [level=2] [ref=e353]
+              - paragraph [ref=e354]: 管理系统中的顶层渠道（如大区、分公司），超级管理员专属功能。
+            - button "新增渠道" [ref=e356]:
+              - img [ref=e357]
+              - text: 新增渠道
+          - generic [ref=e359]:
+            - generic [ref=e361]:
+              - generic:
+                - img
+              - textbox "搜索渠道名称或编码" [ref=e362]
+            - combobox [ref=e364]:
+              - option "全部状态" [selected]
+              - option "启用"
+              - option "禁用"
+          - table [ref=e367]:
+            - rowgroup [ref=e368]:
+              - row "渠道名称/编码 联系人 联系电话 状态 创建时间 操作" [ref=e369]:
+                - columnheader "渠道名称/编码" [ref=e370]
+                - columnheader "联系人" [ref=e371]
+                - columnheader "联系电话" [ref=e372]
+                - columnheader "状态" [ref=e373]
+                - columnheader "创建时间" [ref=e374]
+                - columnheader "操作" [ref=e375]:
+                  - generic [ref=e376]: 操作
+            - rowgroup [ref=e377]:
+              - row "华东大区渠道 CH_EAST 张经理 13800138000 启用 2026-01-01 10:00:00 查看渠道 编辑" [ref=e378]:
+                - cell "华东大区渠道 CH_EAST" [ref=e379]:
+                  - generic [ref=e380]:
+                    - img [ref=e382]
+                    - generic [ref=e386]:
+                      - generic [ref=e387]: 华东大区渠道
+                      - generic [ref=e388]: CH_EAST
+                - cell "张经理" [ref=e389]
+                - cell "13800138000" [ref=e390]
+                - cell "启用" [ref=e391]:
+                  - generic [ref=e392]: 启用
+                - cell "2026-01-01 10:00:00" [ref=e393]
+                - cell "查看渠道 编辑" [ref=e394]:
+                  - button "查看渠道" [ref=e395]:
+                    - img [ref=e396]
+                    - text: 查看渠道
+                  - button "编辑" [ref=e399]:
+                    - img [ref=e400]
+                    - text: 编辑
+              - row "华南大区渠道 CH_SOUTH 李总 13900139000 启用 2026-01-15 14:30:00 查看渠道 编辑" [ref=e403]:
+                - cell "华南大区渠道 CH_SOUTH" [ref=e404]:
+                  - generic [ref=e405]:
+                    - img [ref=e407]
+                    - generic [ref=e411]:
+                      - generic [ref=e412]: 华南大区渠道
+                      - generic [ref=e413]: CH_SOUTH
+                - cell "李总" [ref=e414]
+                - cell "13900139000" [ref=e415]
+                - cell "启用" [ref=e416]:
+                  - generic [ref=e417]: 启用
+                - cell "2026-01-15 14:30:00" [ref=e418]
+                - cell "查看渠道 编辑" [ref=e419]:
+                  - button "查看渠道" [ref=e420]:
+                    - img [ref=e421]
+                    - text: 查看渠道
+                  - button "编辑" [ref=e424]:
+                    - img [ref=e425]
+                    - text: 编辑
+              - row "华北大区渠道 CH_NORTH 王总 13700137000 禁用 2026-02-10 09:15:00 查看渠道 编辑" [ref=e428]:
+                - cell "华北大区渠道 CH_NORTH" [ref=e429]:
+                  - generic [ref=e430]:
+                    - img [ref=e432]
+                    - generic [ref=e436]:
+                      - generic [ref=e437]: 华北大区渠道
+                      - generic [ref=e438]: CH_NORTH
+                - cell "王总" [ref=e439]
+                - cell "13700137000" [ref=e440]
+                - cell "禁用" [ref=e441]:
+                  - generic [ref=e442]: 禁用
+                - cell "2026-02-10 09:15:00" [ref=e443]
+                - cell "查看渠道 编辑" [ref=e444]:
+                  - button "查看渠道" [ref=e445]:
+                    - img [ref=e446]
+                    - text: 查看渠道
+                  - button "编辑" [ref=e449]:
+                    - img [ref=e450]
+                    - text: 编辑
+  - generic [ref=e349]: "0"

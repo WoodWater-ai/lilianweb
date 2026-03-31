@@ -1,0 +1,219 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e31]:
+    - generic [ref=e33]:
+      - generic [ref=e34]:
+        - img [ref=e36]
+        - generic [ref=e40]: 礼品兑换系统
+      - navigation [ref=e42]:
+        - generic [ref=e43]:
+          - heading "概览" [level=3] [ref=e44]
+          - link "控制台" [ref=e46] [cursor=pointer]:
+            - /url: /
+            - img [ref=e47]
+            - text: 控制台
+        - generic [ref=e52]:
+          - heading "组织架构" [level=3] [ref=e53]
+          - link "渠道管理" [ref=e55] [cursor=pointer]:
+            - /url: /channels
+            - img [ref=e56]
+            - text: 渠道管理
+        - generic [ref=e60]:
+          - heading "系统管理" [level=3] [ref=e61]
+          - generic [ref=e62]:
+            - link "公告管理" [ref=e63] [cursor=pointer]:
+              - /url: /announcements
+              - img [ref=e64]
+              - text: 公告管理
+            - link "角色管理" [ref=e67] [cursor=pointer]:
+              - /url: /roles
+              - img [ref=e68]
+              - text: 角色管理
+            - link "账号管理" [ref=e70] [cursor=pointer]:
+              - /url: /users
+              - img [ref=e71]
+              - text: 账号管理
+      - paragraph [ref=e77]: V 1.2.0 Build 2023
+    - generic [ref=e78]:
+      - banner [ref=e80]:
+        - heading "控制台" [level=1] [ref=e82]
+        - generic [ref=e83]:
+          - generic [ref=e84]:
+            - generic:
+              - img
+            - textbox "搜索..." [ref=e85]
+          - button [ref=e86]:
+            - img [ref=e87]
+          - generic [ref=e91]:
+            - generic [ref=e92]:
+              - img [ref=e94]
+              - generic [ref=e97]:
+                - generic [ref=e98]: 管理员
+                - generic [ref=e99]: 系统超级管理员
+            - button "退出登录" [ref=e100]:
+              - img [ref=e101]
+      - main [ref=e104]:
+        - generic [ref=e106]:
+          - generic [ref=e107]:
+            - heading "数据概览" [level=2] [ref=e108]
+            - generic [ref=e109]:
+              - combobox [ref=e110]:
+                - option "最近 7 天" [selected]
+                - option "最近 30 天"
+                - option "本月"
+                - option "本年"
+              - button "导出报表" [ref=e111]:
+                - img [ref=e112]
+                - text: 导出报表
+          - generic [ref=e115]:
+            - generic [ref=e116]:
+              - term [ref=e117]:
+                - img [ref=e119]
+                - paragraph [ref=e121]: 总营业额
+              - definition [ref=e122]:
+                - paragraph [ref=e123]: ¥124,500
+                - paragraph [ref=e124]:
+                  - img [ref=e125]
+                  - generic [ref=e128]: Increased by
+                  - text: +12.5%
+            - generic [ref=e129]:
+              - term [ref=e130]:
+                - img [ref=e132]
+                - paragraph [ref=e136]: 订单总数
+              - definition [ref=e137]:
+                - paragraph [ref=e138]: 1,234
+                - paragraph [ref=e139]:
+                  - img [ref=e140]
+                  - generic [ref=e143]: Increased by
+                  - text: +5.2%
+            - generic [ref=e144]:
+              - term [ref=e145]:
+                - img [ref=e147]
+                - paragraph [ref=e152]: 活跃用户
+              - definition [ref=e153]:
+                - paragraph [ref=e154]: "892"
+                - paragraph [ref=e155]:
+                  - img [ref=e156]
+                  - generic [ref=e159]: Decreased by
+                  - text: "-2.1%"
+            - generic [ref=e160]:
+              - term [ref=e161]:
+                - img [ref=e163]
+                - paragraph [ref=e166]: 转化率
+              - definition [ref=e167]:
+                - paragraph [ref=e168]: 12.5%
+                - paragraph [ref=e169]:
+                  - img [ref=e170]
+                  - generic [ref=e173]: Increased by
+                  - text: +1.2%
+          - generic [ref=e174]:
+            - generic [ref=e175]:
+              - heading "营业额趋势" [level=3] [ref=e176]
+              - generic [ref=e179]:
+                - generic:
+                  - status:
+                    - paragraph: 周四
+                    - list:
+                      - listitem: "revenue : 2780"
+                - application [ref=e180]:
+                  - generic [ref=e194]:
+                    - generic [ref=e195]:
+                      - generic [ref=e197]: 周一
+                      - generic [ref=e199]: 周二
+                      - generic [ref=e201]: 周三
+                      - generic [ref=e203]: 周四
+                      - generic [ref=e205]: 周五
+                      - generic [ref=e207]: 周六
+                      - generic [ref=e209]: 周日
+                    - generic [ref=e210]:
+                      - generic [ref=e212]: "0"
+                      - generic [ref=e214]: "3000"
+                      - generic [ref=e216]: "6000"
+                      - generic [ref=e218]: "9000"
+                      - generic [ref=e220]: "12000"
+            - generic [ref=e221]:
+              - heading "订单品类分布" [level=3] [ref=e222]
+              - application [ref=e226]
+              - generic [ref=e242]:
+                - generic [ref=e245]: 数码家电
+                - generic [ref=e248]: 食品生鲜
+                - generic [ref=e251]: 虚拟权益
+                - generic [ref=e254]: 日用百货
+          - generic [ref=e255]:
+            - generic [ref=e256]:
+              - heading "最新订单" [level=3] [ref=e257]
+              - button "查看全部订单 →" [ref=e258]
+            - table [ref=e260]:
+              - rowgroup [ref=e261]:
+                - row "订单编号 下单用户 商品名称 下单时间 状态" [ref=e262]:
+                  - columnheader "订单编号" [ref=e263]
+                  - columnheader "下单用户" [ref=e264]
+                  - columnheader "商品名称" [ref=e265]
+                  - columnheader "下单时间" [ref=e266]
+                  - columnheader "状态" [ref=e267]
+              - rowgroup [ref=e268]:
+                - row "ORD-20260317-001 张三 (138****1234) 中秋尊享大礼包 2026-03-17 10:23 已发货" [ref=e269]:
+                  - cell "ORD-20260317-001" [ref=e270]
+                  - cell "张三 (138****1234)" [ref=e271]
+                  - cell "中秋尊享大礼包" [ref=e272]:
+                    - generic [ref=e273]:
+                      - img [ref=e274]
+                      - text: 中秋尊享大礼包
+                  - cell "2026-03-17 10:23" [ref=e278]:
+                    - generic [ref=e279]:
+                      - img [ref=e280]
+                      - text: 2026-03-17 10:23
+                  - cell "已发货" [ref=e283]:
+                    - generic [ref=e284]: 已发货
+                - row "ORD-20260317-002 李四 (139****5678) 新春特惠礼盒 2026-03-17 09:45 待发货" [ref=e285]:
+                  - cell "ORD-20260317-002" [ref=e286]
+                  - cell "李四 (139****5678)" [ref=e287]
+                  - cell "新春特惠礼盒" [ref=e288]:
+                    - generic [ref=e289]:
+                      - img [ref=e290]
+                      - text: 新春特惠礼盒
+                  - cell "2026-03-17 09:45" [ref=e294]:
+                    - generic [ref=e295]:
+                      - img [ref=e296]
+                      - text: 2026-03-17 09:45
+                  - cell "待发货" [ref=e299]:
+                    - generic [ref=e300]: 待发货
+                - row "ORD-20260316-003 王五 (137****9012) VIP视频年卡 2026-03-16 18:30 已完成" [ref=e301]:
+                  - cell "ORD-20260316-003" [ref=e302]
+                  - cell "王五 (137****9012)" [ref=e303]
+                  - cell "VIP视频年卡" [ref=e304]:
+                    - generic [ref=e305]:
+                      - img [ref=e306]
+                      - text: VIP视频年卡
+                  - cell "2026-03-16 18:30" [ref=e310]:
+                    - generic [ref=e311]:
+                      - img [ref=e312]
+                      - text: 2026-03-16 18:30
+                  - cell "已完成" [ref=e315]:
+                    - generic [ref=e316]: 已完成
+                - row "ORD-20260316-004 赵六 (136****3456) 企业定制礼盒 2026-03-16 15:20 已发货" [ref=e317]:
+                  - cell "ORD-20260316-004" [ref=e318]
+                  - cell "赵六 (136****3456)" [ref=e319]
+                  - cell "企业定制礼盒" [ref=e320]:
+                    - generic [ref=e321]:
+                      - img [ref=e322]
+                      - text: 企业定制礼盒
+                  - cell "2026-03-16 15:20" [ref=e326]:
+                    - generic [ref=e327]:
+                      - img [ref=e328]
+                      - text: 2026-03-16 15:20
+                  - cell "已发货" [ref=e331]:
+                    - generic [ref=e332]: 已发货
+                - row "ORD-20260315-005 孙七 (135****7890) 阳澄湖大闸蟹券 2026-03-15 11:10 已完成" [ref=e333]:
+                  - cell "ORD-20260315-005" [ref=e334]
+                  - cell "孙七 (135****7890)" [ref=e335]
+                  - cell "阳澄湖大闸蟹券" [ref=e336]:
+                    - generic [ref=e337]:
+                      - img [ref=e338]
+                      - text: 阳澄湖大闸蟹券
+                  - cell "2026-03-15 11:10" [ref=e342]:
+                    - generic [ref=e343]:
+                      - img [ref=e344]
+                      - text: 2026-03-15 11:10
+                  - cell "已完成" [ref=e347]:
+                    - generic [ref=e348]: 已完成
+  - generic [ref=e349]: "0"
