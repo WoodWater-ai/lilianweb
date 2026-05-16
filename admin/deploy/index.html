@@ -58,6 +58,7 @@
         <symbol id="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
         <symbol id="icon-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></symbol>
         <symbol id="icon-qrcode" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="2" y="14" width="8" height="8" rx="1"/><rect x="14" y="14" width="4" height="4" rx="0.5"/><rect x="20" y="20" width="2" height="2"/><rect x="5" y="5" width="2" height="2" fill="currentColor"/><rect x="17" y="5" width="2" height="2" fill="currentColor"/><rect x="5" y="17" width="2" height="2" fill="currentColor"/></symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></symbol>
     </svg>
 
     <style>
@@ -296,6 +297,99 @@
                 radial-gradient(circle at 30% 50%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 40%);
             pointer-events: none;
+        }
+
+        /* 播放按钮 */
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.5);
+            z-index: 10;
+            border: none;
+        }
+
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 15px 50px rgba(255, 107, 53, 0.6);
+        }
+
+        .play-button svg {
+            width: 32px;
+            height: 32px;
+            color: white;
+            margin-left: 4px;
+        }
+
+        /* 视频弹窗 */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 5%;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .video-modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .video-modal-close svg {
+            width: 20px;
+            height: 20px;
+            color: white;
+        }
+
+        .video-modal-content video {
+            width: 100%;
+            display: block;
         }
 
         .hero-content {
@@ -1244,7 +1338,7 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="browser-mockup">
+                <div class="browser-mockup" style="position: relative;">
                     <div class="browser-toolbar">
                         <div class="browser-dot"></div>
                         <div class="browser-dot"></div>
@@ -1252,6 +1346,9 @@
                         <div class="browser-url">www.lilianagent.cn</div>
                     </div>
                     <img src="images/banner.png" alt="礼链数智平台 - 商城与后台整体效果">
+                    <button class="play-button" onclick="openVideoModal()" aria-label="播放视频">
+                        <svg><use href="#icon-play"/></svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -1584,6 +1681,19 @@
         </div>
     </footer>
 
+    <!-- 视频弹窗 -->
+    <div class="video-modal" id="videoModal" onclick="closeVideoModal(event)">
+        <div class="video-modal-content" onclick="event.stopPropagation()">
+            <button class="video-modal-close" onclick="closeVideoModal(event)" aria-label="关闭">
+                <svg><use href="#icon-x"/></svg>
+            </button>
+            <video id="heroVideo" controls autoplay>
+                <source src="images/product.mp4" type="video/mp4">
+                您的浏览器不支持视频播放
+            </video>
+        </div>
+    </div>
+
     <script>
         // 导航栏滚动效果
         window.addEventListener('scroll', function() {
@@ -1656,6 +1766,35 @@
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
+        });
+
+        // 视频弹窗
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('heroVideo');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            video.play();
+        }
+
+        function closeVideoModal(event) {
+            if (event) event.stopPropagation();
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('heroVideo');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            video.pause();
+            video.currentTime = 0;
+        }
+
+        // ESC键关闭视频弹窗
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('videoModal');
+                if (modal.classList.contains('active')) {
+                    closeVideoModal();
+                }
+            }
         });
     </script>
 
