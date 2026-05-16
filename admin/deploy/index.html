@@ -1,0 +1,1759 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>礼链数智平台 - 行业首个Agent智能解决方案</title>
+    <meta name="description" content="杭州礼鲤科技有限公司提供行业首个Agent智能礼品兑换解决方案，包含管理后台、移动商城、AI助手，效率提升10倍。适用于礼品公司、企业福利、积分商城等场景。">
+    <meta name="keywords" content="礼链数智,礼品兑换系统,Agent智能解决方案,AI礼品系统,积分兑换商城,企业福利平台,礼品管理系统,杭州礼鲤科技">
+    <meta name="author" content="杭州礼鲤科技有限公司">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.linkinfinit.com/">
+    <meta property="og:title" content="礼链数智平台 - 行业首个Agent智能解决方案">
+    <meta property="og:description" content="杭州礼鲤科技有限公司提供行业首个Agent智能礼品兑换解决方案，效率提升10倍">
+    <meta property="og:image" content="https://www.linkinfinit.com/og-image.png">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="礼链数智平台">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.linkinfinit.com/">
+    <meta property="twitter:title" content="礼链数智平台 - 行业首个Agent智能解决方案">
+    <meta property="twitter:description" content="杭州礼鲤科技有限公司提供行业首个Agent智能礼品兑换解决方案，效率提升10倍">
+    <meta property="twitter:image" content="https://www.linkinfinit.com/twitter-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%23FF6B35'/><stop offset='100%25' stop-color='%23E55A2B'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='url(%23g)'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='white'>🎁</text></svg>">
+    <link rel="apple-touch-icon" href="images/logo.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.lilianagent.cn/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- Inline SVG Icon Sprite -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <symbol id="icon-robot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/><circle cx="8" cy="16" r="1" fill="currentColor"/><circle cx="16" cy="16" r="1" fill="currentColor"/></symbol>
+        <symbol id="icon-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+        <symbol id="icon-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M8 10h.01M16 10h.01M8 14h.01M16 14h.01"/></symbol>
+        <symbol id="icon-smartphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></symbol>
+        <symbol id="icon-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+        <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></symbol>
+        <symbol id="icon-message" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+        <symbol id="icon-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></symbol>
+        <symbol id="icon-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+        <symbol id="icon-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></symbol>
+        <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.26a16 16 0 0 0 7.66 7.66l1.62-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+        <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+        <symbol id="icon-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.42 5.4-1.57 8A22 22 0 0 1 17 12l-3 3h-2z"/><path d="M9 12l-3 3"/><path d="M15 9l3-3"/></symbol>
+        <symbol id="icon-brain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 3.4 2.1 6.3 5 7.5V22h6v-4.5c2.9-1.2 5-4.1 5-7.5a8 8 0 0 0-8-8z"/><line x1="12" y1="18" x2="12" y2="22"/></symbol>
+        <symbol id="icon-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></symbol>
+        <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+        <symbol id="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+        <symbol id="icon-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></symbol>
+        <symbol id="icon-qrcode" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="2" y="14" width="8" height="8" rx="1"/><rect x="14" y="14" width="4" height="4" rx="0.5"/><rect x="20" y="20" width="2" height="2"/><rect x="5" y="5" width="2" height="2" fill="currentColor"/><rect x="17" y="5" width="2" height="2" fill="currentColor"/><rect x="5" y="17" width="2" height="2" fill="currentColor"/></symbol>
+    </svg>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-orange: #FF6B35;
+            --primary-orange-dark: #E55A2B;
+            --primary-orange-light: #FF8C5A;
+            --accent-teal: #0EA5E9;
+            --accent-emerald: #10B981;
+            --gradient-orange: linear-gradient(135deg, #FF6B35 0%, #E55A2B 100%);
+            --gradient-hero: linear-gradient(135deg, #0A0E27 0%, #1A1F3A 50%, #0A0E27 100%);
+            --gradient-cta: linear-gradient(135deg, #0A0E27 0%, #1A1F3A 80%, #2A1530 100%);
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-tertiary: #94A3B8;
+            --bg-light: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --border-color: #E2E8F0;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* 滚动进度条 */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gradient-orange);
+            z-index: 9999;
+            transition: width 0.1s linear;
+        }
+
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--primary-orange); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary-orange-dark); }
+
+        /* 背景网格装饰 */
+        .bg-grid {
+            background-image:
+                linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-dots {
+            background-image: radial-gradient(rgba(0,0,0,0.06) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px) saturate(180%);
+            padding: 0 5%;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            height: 70px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-orange);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-orange);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .logo-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--primary-orange); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .cta-button {
+            background: var(--gradient-orange);
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* 移动端汉堡菜单 */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .mobile-menu.active { display: flex; }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover { color: var(--primary-orange); }
+
+        /* 英雄区域 */
+        .hero {
+            padding: 160px 5% 100px;
+            background: var(--gradient-hero);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 30% 50%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-text h1 span {
+            background: linear-gradient(135deg, #FF6B35, #FF8C5A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 107, 53, 0.2);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge svg { width: 18px; height: 18px; }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.8;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .btn-primary {
+            background: var(--gradient-orange);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInRight 1s ease-out 0.3s backwards;
+        }
+
+        /* 浏览器Mockup框架 */
+        .browser-mockup {
+            width: 100%;
+            max-width: 650px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: #1E293B;
+        }
+
+        .browser-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: #0F172A;
+        }
+
+        .browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .browser-dot:nth-child(1) { background: #EF4444; }
+        .browser-dot:nth-child(2) { background: #F59E0B; }
+        .browser-dot:nth-child(3) { background: #10B981; }
+
+        .browser-url {
+            flex: 1;
+            background: rgba(255,255,255,0.08);
+            border-radius: 6px;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.4);
+            margin-left: 8px;
+        }
+
+        .browser-mockup img {
+            width: 100%;
+            display: block;
+        }
+
+        /* 手机Mockup框架 */
+        .phone-mockup {
+            width: 280px;
+            margin: 0 auto;
+            background: #0F172A;
+            border-radius: 36px;
+            padding: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border: 3px solid #334155;
+        }
+
+        .phone-notch {
+            width: 120px;
+            height: 28px;
+            background: #0F172A;
+            border-radius: 0 0 16px 16px;
+            margin: 0 auto 8px;
+        }
+
+        .phone-mockup img {
+            width: 100%;
+            border-radius: 24px;
+            display: block;
+        }
+
+        /* Agent特色区域 */
+        .agent-section {
+            padding: 120px 5%;
+            background: linear-gradient(135deg, #FFF5F0 0%, #FFE8E0 100%);
+            position: relative;
+        }
+
+        .agent-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.1), transparent 50%);
+            pointer-events: none;
+        }
+
+        .agent-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .agent-visual { position: relative; }
+
+        .agent-diagram {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .agent-node {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--primary-orange);
+            transition: all 0.3s ease;
+        }
+
+        .agent-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.2);
+        }
+
+        .agent-node h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-orange);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .agent-node h4 svg { width: 22px; height: 22px; }
+        .agent-node p { font-size: 0.9rem; color: var(--text-secondary); }
+
+        .agent-arrow {
+            text-align: center;
+            margin: 0.5rem 0;
+            animation: bounceArrow 2s infinite;
+        }
+
+        .agent-arrow svg {
+            width: 28px;
+            height: 28px;
+            color: var(--primary-orange);
+        }
+
+        .agent-text h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+        }
+
+        .agent-text h2 span {
+            background: var(--gradient-orange);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .agent-text p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .agent-features { list-style: none; }
+
+        .agent-features li {
+            padding: 1rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .agent-feature-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .agent-feature-icon svg { width: 20px; height: 20px; color: var(--primary-orange); }
+
+        .agent-feature-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .agent-feature-content p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* 产品特色 */
+        .features {
+            padding: 120px 5%;
+            background: var(--bg-light);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--primary-orange);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--gradient-orange);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-orange-light);
+        }
+
+        .feature-card:hover::before { transform: scaleX(1); }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-icon svg { width: 28px; height: 28px; color: var(--primary-orange); transition: color 0.3s; }
+
+        .feature-card:hover .feature-icon {
+            background: var(--gradient-orange);
+            transform: scale(1.1);
+        }
+
+        .feature-card:hover .feature-icon svg { color: white; }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* 系统架构 */
+        .architecture {
+            padding: 120px 5%;
+            background: #FFFFFF;
+        }
+
+        .arch-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .arch-card {
+            background: var(--bg-light);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .arch-card:hover { box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08); }
+
+        .arch-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .arch-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-orange);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .arch-icon svg { width: 24px; height: 24px; }
+
+        .arch-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .arch-features { list-style: none; }
+
+        .arch-features li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .arch-features li:last-child { border-bottom: none; }
+        .arch-features li:hover { padding-left: 0.5rem; }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-orange);
+            flex-shrink: 0;
+        }
+
+        .check-icon svg { width: 14px; height: 14px; }
+
+        /* 客户案例 */
+        .testimonials {
+            padding: 120px 5%;
+            background: #FFFFFF;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 1rem; left: 2rem;
+            font-size: 4rem;
+            color: var(--primary-orange);
+            opacity: 0.1;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-card:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .testimonial-card p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gradient-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .testimonial-role {
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+            margin-top: 0.2rem;
+        }
+
+        /* 产品展示区域 */
+        .product-showcase {
+            padding: 120px 5%;
+            background: var(--bg-light);
+        }
+
+        .showcase-category { margin-bottom: 4rem; }
+        .showcase-category:last-child { margin-bottom: 0; }
+
+        .category-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .category-title svg { width: 28px; height: 28px; color: var(--primary-orange); }
+
+        .showcase-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+        }
+
+        .showcase-item {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .showcase-item > a:first-child,
+        .showcase-item > .phone-mockup,
+        .showcase-item > .browser-mockup {
+            flex-shrink: 0;
+        }
+
+        .showcase-desc {
+            flex: 1;
+        }
+
+        .showcase-image {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .showcase-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .showcase-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .showcase-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* CTA区域 */
+        .cta-section {
+            padding: 120px 5%;
+            background: var(--gradient-cta);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(255, 107, 53, 0.15), transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(14, 165, 233, 0.08), transparent 40%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-contact-info {
+            margin-top: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-contact-info p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+        }
+
+        .cta-qrcode {
+            margin-top: 1.5rem;
+            display: inline-block;
+            background: white;
+            padding: 12px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .cta-qrcode img {
+            width: 160px;
+            height: 160px;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .cta-qrcode-label {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        /* 底部 */
+        .footer {
+            background: #0F172A;
+            color: white;
+            padding: 80px 5% 40px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand { max-width: 300px; }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FF6B35, #FF8C5A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { padding: 0.5rem 0; }
+
+        .footer-section a {
+            color: var(--text-tertiary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-section a:hover { color: white; padding-left: 0.3rem; }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+
+        /* 动画 */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes bounceArrow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 滚动动画 - 交错 */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-on-scroll.delay-1 { transition-delay: 0.1s; }
+        .animate-on-scroll.delay-2 { transition-delay: 0.2s; }
+        .animate-on-scroll.delay-3 { transition-delay: 0.3s; }
+        .animate-on-scroll.delay-4 { transition-delay: 0.4s; }
+        .animate-on-scroll.delay-5 { transition-delay: 0.5s; }
+
+        /* 数字计数动效 */
+        .count-up {
+            display: inline-block;
+            animation: countUp 0.8s ease-out backwards;
+        }
+
+        /* 响应式 */
+        @media (max-width: 1200px) {
+            .features-grid, .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .agent-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 1.5rem;
+                height: 70px;
+            }
+
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+
+            .hero {
+                padding: 120px 1.5rem 60px;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+                letter-spacing: -1px;
+            }
+
+            .hero-text p { font-size: 1.1rem; }
+            .hero-buttons { flex-direction: column; }
+            .section-title { font-size: 2rem; }
+
+            .features-grid, .testimonials-grid, .arch-container {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cta-section h2 { font-size: 2rem; }
+            .agent-text h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 滚动进度条 -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">
+            <img src="images/logo.png" alt="礼链数智" style="height: 40px; margin-right: 4px;">
+            礼链数智平台
+        </a>
+        <ul class="nav-links">
+            <li><a href="#agent">Agent解决方案</a></li>
+            <li><a href="#features">产品特色</a></li>
+            <li><a href="#architecture">系统架构</a></li>
+            <li><a href="#showcase">产品展示</a></li>
+            <li><a href="#testimonials">客户案例</a></li>
+        </ul>
+        <a href="https://icnnsdx1yy2u.feishu.cn/share/base/form/shrcna42yw3gCgLzC79rue5G9Ke" target="_blank" rel="noopener" class="cta-button">立即开通</a>
+        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#agent" onclick="closeMobileMenu()">Agent解决方案</a>
+        <a href="#features" onclick="closeMobileMenu()">产品特色</a>
+        <a href="#architecture" onclick="closeMobileMenu()">系统架构</a>
+        <a href="#showcase" onclick="closeMobileMenu()">产品展示</a>
+        <a href="#testimonials" onclick="closeMobileMenu()">客户案例</a>
+        <a href="https://icnnsdx1yy2u.feishu.cn/share/base/form/shrcna42yw3gCgLzC79rue5G9Ke" target="_blank" rel="noopener" class="cta-button" onclick="closeMobileMenu()" style="margin-top: 1rem;">立即开通</a>
+    </div>
+
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <svg><use href="#icon-rocket"/></svg>
+                    行业首个Agent智能解决方案
+                </div>
+                <h1>一站式<span>礼品兑换</span>解决方案</h1>
+                <p>为礼品公司提供完整的兑换系统，包含管理后台 + 移动商城 + Agent智能助手<br>助力企业轻松开展礼品兑换业务，AI驱动效率提升10倍</p>
+                <div class="hero-buttons">
+                    <a href="#cta" class="btn-primary">
+                        免费试用
+                        <span>&rarr;</span>
+                    </a>
+                    <a href="#agent" class="btn-secondary">了解Agent</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="browser-mockup">
+                    <div class="browser-toolbar">
+                        <div class="browser-dot"></div>
+                        <div class="browser-dot"></div>
+                        <div class="browser-dot"></div>
+                        <div class="browser-url">www.lilianagent.cn</div>
+                    </div>
+                    <img src="images/banner.png" alt="礼链数智平台 - 商城与后台整体效果">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agent特色区域 -->
+    <section class="agent-section" id="agent">
+        <div class="agent-content">
+            <div class="agent-visual">
+                <div class="agent-diagram">
+                    <div class="agent-node animate-on-scroll">
+                        <h4><svg><use href="#icon-brain"/></svg> 智能理解</h4>
+                        <p>自然语言指令，自动识别业务意图</p>
+                    </div>
+                    <div class="agent-arrow animate-on-scroll">
+                        <svg><use href="#icon-arrow-down"/></svg>
+                    </div>
+                    <div class="agent-node animate-on-scroll delay-1">
+                        <h4><svg><use href="#icon-zap"/></svg> 自动执行</h4>
+                        <p>自动调用系统功能，完成业务操作</p>
+                    </div>
+                    <div class="agent-arrow animate-on-scroll delay-1">
+                        <svg><use href="#icon-arrow-down"/></svg>
+                    </div>
+                    <div class="agent-node animate-on-scroll delay-2">
+                        <h4><svg><use href="#icon-check"/></svg> 智能反馈</h4>
+                        <p>实时反馈执行结果，支持人工确认</p>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-text">
+                <h2>行业首个<span>Agent智能解决方案</span></h2>
+                <p>告别繁琐的手动操作，让AI Agent成为您的智能助手。通过自然语言指令，Agent自动理解业务需求，调用系统功能，快速完成订单处理、商品管理、数据分析等复杂操作，效率提升10倍。</p>
+                <ul class="agent-features">
+                    <li>
+                        <div class="agent-feature-icon"><svg><use href="#icon-message"/></svg></div>
+                        <div class="agent-feature-content">
+                            <h4>自然语言交互</h4>
+                            <p>无需学习复杂操作，用自然语言即可指挥Agent完成任务</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="agent-feature-icon"><svg><use href="#icon-refresh"/></svg></div>
+                        <div class="agent-feature-content">
+                            <h4>自动化业务流程</h4>
+                            <p>批量处理订单、自动发货、智能分类，解放人力</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="agent-feature-icon"><svg><use href="#icon-chart"/></svg></div>
+                        <div class="agent-feature-content">
+                            <h4>智能数据分析</h4>
+                            <p>自动生成报表、识别异常、提供决策建议</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="agent-feature-icon"><svg><use href="#icon-target"/></svg></div>
+                        <div class="agent-feature-content">
+                            <h4>精准执行</h4>
+                            <p>99.2%的准确率，支持人工审核确认机制</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品特色 -->
+    <section class="features bg-dots" id="features">
+        <div class="section-header">
+            <div class="section-label">核心优势</div>
+            <h2 class="section-title">为什么选择我们？</h2>
+            <p class="section-subtitle">专为礼品公司设计，一站式解决兑换业务全流程，助力企业数字化转型</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card animate-on-scroll delay-1">
+                <div class="feature-icon"><svg><use href="#icon-robot"/></svg></div>
+                <h3>Agent智能助手</h3>
+                <p>行业首个AI Agent解决方案，自然语言交互，自动执行业务操作，效率提升10倍。</p>
+            </div>
+            <div class="feature-card animate-on-scroll delay-2">
+                <div class="feature-icon"><svg><use href="#icon-target"/></svg></div>
+                <h3>完整业务闭环</h3>
+                <p>从商品管理、订单处理到物流跟踪，提供完整的兑换业务流程管理，无需多个系统切换。</p>
+            </div>
+            <div class="feature-card animate-on-scroll delay-3">
+                <div class="feature-icon"><svg><use href="#icon-building"/></svg></div>
+                <h3>多租户架构</h3>
+                <p>支持渠道-租户二级架构，礼品公司可管理多个客户，每个客户数据独立隔离，安全可靠。</p>
+            </div>
+            <div class="feature-card animate-on-scroll delay-1">
+                <div class="feature-icon"><svg><use href="#icon-smartphone"/></svg></div>
+                <h3>移动端优先</h3>
+                <p>专为移动端设计的H5商城，用户体验流畅，支持扫码兑换、智能地址识别等便捷功能。</p>
+            </div>
+            <div class="feature-card animate-on-scroll delay-2">
+                <div class="feature-icon"><svg><use href="#icon-zap"/></svg></div>
+                <h3>快速部署</h3>
+                <p>标准化SaaS服务，开通即用，无需技术团队维护，专注业务发展即可。</p>
+            </div>
+            <div class="feature-card animate-on-scroll delay-3">
+                <div class="feature-icon"><svg><use href="#icon-shield"/></svg></div>
+                <h3>安全可靠</h3>
+                <p>企业级安全架构，数据加密传输，权限精细控制，保障业务数据安全。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 系统架构 -->
+    <section class="architecture bg-grid" id="architecture">
+        <div class="section-header">
+            <div class="section-label">系统架构</div>
+            <h2 class="section-title">一体化解决方案</h2>
+            <p class="section-subtitle">管理后台 + 移动商城 + Agent助手，完美协同，打造完整业务闭环</p>
+        </div>
+        <div class="arch-container">
+            <div class="arch-card animate-on-scroll">
+                <div class="arch-header">
+                    <div class="arch-icon"><svg><use href="#icon-monitor"/></svg></div>
+                    <h3>管理后台</h3>
+                </div>
+                <ul class="arch-features">
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 商品管理：增删改查、批量操作</li>
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 订单管理：状态跟踪、批量发货</li>
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 分类管理：多级分类树形结构</li>
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 礼包管理：组合商品灵活配置</li>
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 卡密管理：虚拟商品自动发卡</li>
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 组织架构：渠道-租户二级管理</li>
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 权限控制：RBAC角色权限体系</li>
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 数据报表：可视化图表分析</li>
+                </ul>
+            </div>
+            <div class="arch-card animate-on-scroll delay-2">
+                <div class="arch-header">
+                    <div class="arch-icon"><svg><use href="#icon-smartphone"/></svg></div>
+                    <h3>移动商城</h3>
+                </div>
+                <ul class="arch-features">
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 双登录模式：兑换码/手机号</li>
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 商品浏览：网格展示、详情查看</li>
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 智能兑换：扫码识别、规格选择</li>
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 订单跟踪：状态筛选、物流查询</li>
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 地址管理：智能解析、自动识别</li>
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 深色模式：护眼主题切换</li>
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 流畅动画：Motion动画效果</li>
+                    <li><span class="check-icon"><svg><use href="#icon-check"/></svg></span> 响应式设计：完美适配移动端</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 客户案例 -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-header">
+            <div class="section-label">客户评价</div>
+            <h2 class="section-title">客户成功案例</h2>
+            <p class="section-subtitle">已服务数百家礼品公司，助力业务增长</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card animate-on-scroll delay-1">
+                <p>Agent功能太强大了！以前需要3个人处理一天的订单，现在Agent自动处理，效率提升了10倍，准确率还更高。</p>
+                <div class="testimonial-author-info">
+                    <div class="testimonial-avatar">张</div>
+                    <div>
+                        <div class="testimonial-author">张总监</div>
+                        <div class="testimonial-role">某大型礼品公司运营总监</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card animate-on-scroll delay-2">
+                <p>多租户架构非常适合我们，可以同时服务多个企业客户，数据隔离做得很好。Agent助手让我们的客服效率提升了300%。</p>
+                <div class="testimonial-author-info">
+                    <div class="testimonial-avatar">李</div>
+                    <div>
+                        <div class="testimonial-author">李总经理</div>
+                        <div class="testimonial-role">某渠道代理商总经理</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card animate-on-scroll delay-3">
+                <p>智能地址识别和Agent自动处理功能太实用了，大大减少了人工错误，用户体验显著提升，客户满意度达到98%。</p>
+                <div class="testimonial-author-info">
+                    <div class="testimonial-avatar">王</div>
+                    <div>
+                        <div class="testimonial-author">王负责人</div>
+                        <div class="testimonial-role">某电商平台负责人</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品展示区域 -->
+    <section class="product-showcase bg-grid" id="showcase">
+        <div class="section-header">
+            <div class="section-label">产品展示</div>
+            <h2 class="section-title">真实产品界面展示</h2>
+            <p class="section-subtitle">管理后台与移动商城，完美协同</p>
+        </div>
+
+        <!-- 移动商城展示 -->
+        <div class="showcase-category">
+            <h3 class="category-title"><svg><use href="#icon-smartphone"/></svg> 移动商城 <a href="https://h5.lilianagent.cn/login?qrCodeId=2054163779763466241&orgId=2043205671790362625" target="_blank" rel="noopener" style="color:var(--primary-orange);font-size:0.85rem;font-weight:500;vertical-align:middle;margin-left:12px;">点击体验 &rarr;</a></h3>
+            <div class="showcase-container">
+                <div class="showcase-item animate-on-scroll">
+                    <div class="phone-mockup">
+                        <div class="phone-notch"></div>
+                        <img src="images/mall-device.png" alt="商品兑换界面">
+                    </div>
+                    <h3 class="showcase-title">商品兑换界面</h3>
+                    <p class="showcase-desc">用户可浏览商品、查看积分价格、库存，点击查看详情进行兑换操作</p>
+                </div>
+                <div class="showcase-item animate-on-scroll delay-2">
+                    <div class="phone-mockup">
+                        <div class="phone-notch"></div>
+                        <img src="images/登录.jpg" alt="礼品卡登录界面">
+                    </div>
+                    <h3 class="showcase-title">礼品卡登录界面</h3>
+                    <p class="showcase-desc">支持兑换码登录和手机号登录，扫码自动填充功能提升用户体验</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 管理后台展示 -->
+        <div class="showcase-category">
+            <h3 class="category-title"><svg><use href="#icon-monitor"/></svg> 管理后台 <a href="https://admin.lilianagent.cn/" target="_blank" rel="noopener" style="color:var(--primary-orange);font-size:0.85rem;font-weight:500;vertical-align:middle;margin-left:12px;">点击体验 &rarr;</a></h3>
+            <div class="showcase-container">
+                <div class="showcase-item animate-on-scroll">
+                    <div class="browser-mockup">
+                        <div class="browser-toolbar">
+                            <div class="browser-dot"></div>
+                            <div class="browser-dot"></div>
+                            <div class="browser-dot"></div>
+                            <div class="browser-url">admin.lilianagent.cn</div>
+                        </div>
+                        <img src="images/admin-device.jpeg" alt="卡密管理界面">
+                    </div>
+                    <h3 class="showcase-title">卡密管理界面</h3>
+                    <p class="showcase-desc">批量生成卡密、查看卡密列表、礼品助手功能，支持虚拟商品自动发卡</p>
+                </div>
+                <div class="showcase-item animate-on-scroll delay-2">
+                    <div class="browser-mockup">
+                        <div class="browser-toolbar">
+                            <div class="browser-dot"></div>
+                            <div class="browser-dot"></div>
+                            <div class="browser-dot"></div>
+                            <div class="browser-url">admin.lilianagent.cn</div>
+                        </div>
+                        <img src="images/租户.jpg" alt="二级租户管理界面">
+                    </div>
+                    <h3 class="showcase-title">二级租户管理界面</h3>
+                    <p class="showcase-desc">管理二级租户（门店/代理），支持搜索、筛选、编辑，实现分权分域管理</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA区域 -->
+    <section class="cta-section" id="cta">
+        <div class="cta-content">
+            <h2>立即开通，开启智能兑换新时代</h2>
+            <p>免费试用 · Agent赋能 · 效率提升10倍</p>
+            <div class="cta-buttons">
+                <a href="tel:13839776214" class="btn-primary">
+                    <svg style="width:20px;height:20px"><use href="#icon-phone"/></svg>
+                    立即咨询：13839776214
+                </a>
+                <a href="https://icnnsdx1yy2u.feishu.cn/share/base/form/shrcna42yw3gCgLzC79rue5G9Ke" class="btn-secondary" target="_blank" rel="noopener">
+                    <svg style="width:20px;height:20px"><use href="#icon-mail"/></svg>
+                    联系我们
+                </a>
+            </div>
+            <div class="cta-contact-info">
+                <div class="cta-qrcode">
+                    <img src="images/二维码.png" alt="微信二维码">
+                    <div class="cta-qrcode-label">微信扫码咨询</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="images/logo.png" alt="礼链数智" style="height: 36px; margin-right: 8px;"> 礼链数智平台
+                </div>
+                <p>行业首个Agent智能解决方案，杭州礼鲤科技有限公司提供一站式兑换服务，助力企业数字化转型，效率提升10倍。</p>
+            </div>
+            <div class="footer-section">
+                <h4>产品服务</h4>
+                <ul>
+                    <li><a href="#">管理后台</a></li>
+                    <li><a href="#">移动商城</a></li>
+                    <li><a href="#">Agent助手</a></li>
+                    <li><a href="#">API接口</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>解决方案</h4>
+                <ul>
+                    <li><a href="#">礼品公司</a></li>
+                    <li><a href="#">企业福利</a></li>
+                    <li><a href="#">积分商城</a></li>
+                    <li><a href="#">会员兑换</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>支持帮助</h4>
+                <ul>
+                    <li><a href="#">使用文档</a></li>
+                    <li><a href="#">视频教程</a></li>
+                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#">联系客服</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>关于我们</h4>
+                <ul>
+                    <li><a href="#">公司介绍</a></li>
+                    <li><a href="#">联系方式</a></li>
+                    <li><a href="#">合作伙伴</a></li>
+                    <li><a href="#">加入我们</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 杭州礼鲤科技有限公司. 礼链数智平台. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const progress = document.getElementById('scrollProgress');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // 滚动进度条
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            progress.style.width = scrollPercent + '%';
+        });
+
+        // 移动端菜单
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const hamburger = document.getElementById('hamburger');
+            menu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.getElementById('hamburger').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // 滚动动画 - IntersectionObserver
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 数字计数动画
+        function animateCountUp(element, target, suffix, duration) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const isDecimal = String(target).includes('.');
+            function update() {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = (isDecimal ? target.toFixed(1) : Math.round(target)) + suffix;
+                    return;
+                }
+                element.textContent = (isDecimal ? start.toFixed(1) : Math.round(start)) + suffix;
+                requestAnimationFrame(update);
+            }
+            update();
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "礼链数智平台",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "行业首个Agent智能礼品兑换解决方案，包含管理后台、移动商城、AI助手，效率提升10倍",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CNY",
+            "description": "免费试用"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "286",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "杭州礼鲤科技有限公司",
+            "url": "https://www.lilianagent.cn",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+86-138-3977-6214",
+                "contactType": "customer service",
+                "availableLanguage": "Chinese"
+            }
+        },
+        "featureList": [
+            "Agent智能助手",
+            "自然语言交互",
+            "自动化业务流程",
+            "智能数据分析",
+            "多租户架构",
+            "移动端优先",
+            "快速部署",
+            "安全可靠"
+        ]
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "杭州礼鲤科技有限公司",
+        "url": "https://www.lilianagent.cn",
+        "logo": "https://www.lilianagent.cn/logo.png",
+        "description": "行业首个Agent智能礼品兑换解决方案提供商",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+86-138-3977-6214",
+            "contactType": "sales",
+            "areaServed": "CN",
+            "availableLanguage": "Chinese"
+        },
+        "sameAs": [
+            "https://github.com/lilianagent",
+            "https://twitter.com/lilianagent"
+        ]
+    }
+    </script>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "首页",
+                "item": "https://www.lilianagent.cn"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Agent解决方案",
+                "item": "https://www.lilianagent.cn/#agent"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "产品特色",
+                "item": "https://www.lilianagent.cn/#features"
+            }
+        ]
+    }
+    </script>
+</body>
+</html>

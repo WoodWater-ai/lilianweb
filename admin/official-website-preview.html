@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>礼品兑换系统 - 一站式礼品兑换解决方案</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4F46E5;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #4F46E5;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+        }
+
+        /* 英雄区域 */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s 0.2s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1s 0.4s backwards;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #4F46E5;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid white;
+            transition: background 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* 产品特色 */
+        .features {
+            padding: 5rem 2rem;
+            background: #f9fafb;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.8;
+        }
+
+        /* 系统架构 */
+        .architecture {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .arch-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .arch-card {
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .arch-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #4F46E5;
+        }
+
+        .arch-features {
+            list-style: none;
+            text-align: left;
+        }
+
+        .arch-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #d1d5db;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .arch-features li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        /* 商品展示 */
+        .products {
+            padding: 5rem 2rem;
+            background: #f9fafb;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        /* 客户案例 */
+        .testimonials {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: #f9fafb;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #4F46E5;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #4b5563;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        /* CTA区域 */
+        .cta-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* 底部 */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            padding: 0.5rem 0;
+        }
+
+        .footer-section a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">🎁 礼品兑换系统</div>
+        <ul class="nav-links">
+            <li><a href="#features">产品特色</a></li>
+            <li><a href="#architecture">系统架构</a></li>
+            <li><a href="#products">商品展示</a></li>
+            <li><a href="#testimonials">客户案例</a></li>
+        </ul>
+        <a href="#cta" class="cta-button">立即开通</a>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <h1>一站式礼品兑换解决方案</h1>
+        <p>为礼品公司提供完整的兑换系统，包含管理后台 + 移动商城<br>助力企业轻松开展礼品兑换业务</p>
+        <div class="hero-buttons">
+            <a href="#cta" class="btn-primary">免费试用</a>
+            <a href="#features" class="btn-secondary">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 产品特色 -->
+    <section class="features" id="features">
+        <h2 class="section-title">为什么选择我们？</h2>
+        <p class="section-subtitle">专为礼品公司设计，一站式解决兑换业务全流程</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>完整业务闭环</h3>
+                <p>从商品管理、订单处理到物流跟踪，提供完整的兑换业务流程管理，无需多个系统切换。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏢</div>
+                <h3>多租户架构</h3>
+                <p>支持渠道-租户二级架构，礼品公司可管理多个客户，每个客户数据独立隔离，安全可靠。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>移动端优先</h3>
+                <p>专为移动端设计的H5商城，用户体验流畅，支持扫码兑换、智能地址识别等便捷功能。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>快速部署</h3>
+                <p>标准化SaaS服务，开通即用，无需技术团队维护，专注业务发展即可。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>安全可靠</h3>
+                <p>企业级安全架构，数据加密传输，权限精细控制，保障业务数据安全。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>数据洞察</h3>
+                <p>丰富的数据报表和可视化图表，实时掌握业务动态，辅助决策优化。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 系统架构 -->
+    <section class="architecture" id="architecture">
+        <h2 class="section-title">一体化系统架构</h2>
+        <p class="section-subtitle">管理后台 + 移动商城，完美协同</p>
+        <div class="arch-container">
+            <div class="arch-card">
+                <h3>🖥️ 管理后台</h3>
+                <ul class="arch-features">
+                    <li><span class="check-icon">✓</span> 商品管理：增删改查、批量操作</li>
+                    <li><span class="check-icon">✓</span> 订单管理：状态跟踪、批量发货</li>
+                    <li><span class="check-icon">✓</span> 分类管理：多级分类树形结构</li>
+                    <li><span class="check-icon">✓</span> 礼包管理：组合商品灵活配置</li>
+                    <li><span class="check-icon">✓</span> 卡密管理：虚拟商品自动发卡</li>
+                    <li><span class="check-icon">✓</span> 组织架构：渠道-租户二级管理</li>
+                    <li><span class="check-icon">✓</span> 权限控制：RBAC角色权限体系</li>
+                    <li><span class="check-icon">✓</span> 数据报表：可视化图表分析</li>
+                </ul>
+            </div>
+            <div class="arch-card">
+                <h3>📱 移动商城</h3>
+                <ul class="arch-features">
+                    <li><span class="check-icon">✓</span> 双登录模式：兑换码/手机号</li>
+                    <li><span class="check-icon">✓</span> 商品浏览：网格展示、详情查看</li>
+                    <li><span class="check-icon">✓</span> 智能兑换：扫码识别、规格选择</li>
+                    <li><span class="check-icon">✓</span> 订单跟踪：状态筛选、物流查询</li>
+                    <li><span class="check-icon">✓</span> 地址管理：智能解析、自动识别</li>
+                    <li><span class="check-icon">✓</span> 深色模式：护眼主题切换</li>
+                    <li><span class="check-icon">✓</span> 流畅动画：Motion动画效果</li>
+                    <li><span class="check-icon">✓</span> 响应式设计：完美适配移动端</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 商品展示 -->
+    <section class="products" id="products">
+        <h2 class="section-title">支持多种商品类型</h2>
+        <p class="section-subtitle">实物商品、虚拟卡密、组合礼包，一站式管理</p>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">⌚</div>
+                <div class="product-info">
+                    <h3>智能运动手表 Pro</h3>
+                    <p>实物商品 · 物流配送</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">🎧</div>
+                <div class="product-info">
+                    <h3>降噪蓝牙耳机 H1</h3>
+                    <p>实物商品 · 物流配送</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">🎁</div>
+                <div class="product-info">
+                    <h3>精品商务礼品套装</h3>
+                    <p>组合礼包 · 多规格</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">🎫</div>
+                <div class="product-info">
+                    <h3>视频会员卡</h3>
+                    <p>虚拟卡密 · 自动发卡</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">💡</div>
+                <div class="product-info">
+                    <h3>简约风台灯</h3>
+                    <p>实物商品 · 物流配送</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">🎤</div>
+                <div class="product-info">
+                    <h3>电竞直播麦克风</h3>
+                    <p>实物商品 · 物流配送</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 客户案例 -->
+    <section class="testimonials" id="testimonials">
+        <h2 class="section-title">客户成功案例</h2>
+        <p class="section-subtitle">已服务数百家礼品公司，助力业务增长</p>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>"系统上线后，我们的兑换业务效率提升了300%，客户满意度大幅提高。管理后台功能强大，移动端体验流畅。"</p>
+                <div class="testimonial-author">— 某大型礼品公司运营总监</div>
+            </div>
+            <div class="testimonial-card">
+                <p>"多租户架构非常适合我们，可以同时服务多个企业客户，数据隔离做得很好，安全可靠。"</p>
+                <div class="testimonial-author">— 某渠道代理商总经理</div>
+            </div>
+            <div class="testimonial-card">
+                <p>"智能地址识别功能太实用了，用户粘贴地址就能自动识别，大大减少了录入错误，提升了用户体验。"</p>
+                <div class="testimonial-author">— 某电商平台负责人</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA区域 -->
+    <section class="cta-section" id="cta">
+        <h2>立即开通，开启兑换业务新篇章</h2>
+        <p>免费试用 · 快速部署 · 专业服务</p>
+        <a href="#" class="btn-primary" style="display: inline-block; margin-top: 1rem;">申请试用</a>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>产品服务</h4>
+                <ul>
+                    <li><a href="#">管理后台</a></li>
+                    <li><a href="#">移动商城</a></li>
+                    <li><a href="#">API接口</a></li>
+                    <li><a href="#">定制开发</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>解决方案</h4>
+                <ul>
+                    <li><a href="#">礼品公司</a></li>
+                    <li><a href="#">企业福利</a></li>
+                    <li><a href="#">积分商城</a></li>
+                    <li><a href="#">会员兑换</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>支持帮助</h4>
+                <ul>
+                    <li><a href="#">使用文档</a></li>
+                    <li><a href="#">视频教程</a></li>
+                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#">联系客服</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>关于我们</h4>
+                <ul>
+                    <li><a href="#">公司介绍</a></li>
+                    <li><a href="#">联系方式</a></li>
+                    <li><a href="#">合作伙伴</a></li>
+                    <li><a href="#">加入我们</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 礼品兑换系统. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

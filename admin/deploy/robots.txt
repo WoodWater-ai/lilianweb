@@ -1,0 +1,16 @@
+# Robots.txt for 礼享兑换系统
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.lixangift.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow admin areas (if any)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*.xml$

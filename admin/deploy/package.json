@@ -1,0 +1,9 @@
+{
+  "name": "gift-exchange-website",
+  "version": "1.0.0",
+  "description": "礼品兑换系统官网",
+  "scripts": {
+    "start": "npx serve -p 3001",
+    "dev": "npx live-server --port=3001"
+  }
+}
