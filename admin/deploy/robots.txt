@@ -1,10 +1,10 @@
-# Robots.txt for 礼享兑换系统
+# Robots.txt for 礼链数智平台
 
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://www.lixangift.com/sitemap.xml
+Sitemap: https://www.lilianagent.cn/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1
