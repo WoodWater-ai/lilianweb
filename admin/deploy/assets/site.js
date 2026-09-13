@@ -83,7 +83,7 @@
       const active = item === button;
       item.classList.toggle('active',active);item.setAttribute('aria-pressed',String(active));
     });
-    $$('[data-category]').forEach(item => {item.hidden=button.dataset.filter!=='all' && item.dataset.category!==button.dataset.filter;});
+    $$('[data-category]').forEach(item => {item.hidden=button.dataset.filter!=='all' && item.dataset.category!==button.dataset.filter;if(item.hidden)$$('video',item).forEach(video=>video.pause());});
     track('case_filter',{category:button.dataset.filter});
   }));
   const tabs=$$('[data-tab]');
@@ -99,6 +99,29 @@
       if(event.key==='Home')next=0;
       if(event.key==='End')next=tabs.length-1;
       if(next!==undefined){event.preventDefault();selectTab(tabs[next]);tabs[next].focus();}
+    });
+  });
+  $$('[data-video-workbench]').forEach(workbench => {
+    const tabs = $$('[data-video-kind]',workbench);
+    function select(tab) {
+      $$('video',workbench).forEach(video=>video.pause());
+      tabs.forEach(item=>{const active=item===tab;item.classList.toggle('active',active);item.setAttribute('aria-selected',String(active));item.tabIndex=active?0:-1;});
+      $$('[data-video-panel]',workbench).forEach(panel=>{panel.hidden=panel.dataset.videoPanel!==tab.dataset.videoKind;});
+    }
+    tabs.forEach((tab,index)=>{
+      tab.addEventListener('click',()=>select(tab));
+      tab.addEventListener('keydown',event=>{
+        if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
+        event.preventDefault();const next=tabs[event.key==='Home'?0:event.key==='End'?tabs.length-1:(index+1)%tabs.length];select(next);next.focus();
+      });
+    });
+    $('[data-replica-play]',workbench).addEventListener('click',()=>{
+      const video=$('[data-replica-result]',workbench);
+      $('[data-replica-status]',workbench).textContent='正在展示已有复刻案例，非实时生成，不消耗图片次数。';
+      video.play().catch(()=>{$('[data-replica-status]',workbench).textContent='请点击输出视频的播放按钮查看已有案例。';});
+    });
+    $('[data-image-video-preview]',workbench).addEventListener('click',()=>{
+      $('[data-image-video-status]',workbench).textContent='对应的图生视频结果尚未加入。当前只展示首帧输入示意，不使用复刻视频代替。';
     });
   });
   function freshId() {return crypto.randomUUID();}
