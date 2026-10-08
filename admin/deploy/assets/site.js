@@ -101,6 +101,138 @@
       if(next!==undefined){event.preventDefault();selectTab(tabs[next]);tabs[next].focus();}
     });
   });
+  const ambientStages = $$('[data-ambient-stage]');
+  if (ambientStages.length) {
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const connection = navigator.connection;
+    const ambientPlayers = [];
+    const hasPlaybackBlocker = () => document.hidden || document.body.classList.contains('dialog-open') || dialogs.some(dialog => dialog.open);
+    const allowsAutoplay = () => !motionPreference.matches && !connection?.saveData;
+    ambientStages.forEach(stage => {
+      const video = $('[data-ambient-video]', stage);
+      const toggle = $('[data-ambient-toggle]', stage);
+      const status = $('[data-ambient-status]', stage);
+      if (!video || !toggle) return;
+      const icon = $('[data-ambient-icon]', toggle);
+      const label = $('[data-ambient-label]', toggle);
+      const defaultStatus = status?.textContent || '已有复刻案例 · 静音预览';
+      let inView = false;
+      let loaded = false;
+      let userPaused = false;
+      let manuallyStarted = false;
+      let needsRetry = false;
+      let pending = false;
+      let playRequest = 0;
+      let feedback = '';
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      const blocked = () => !inView || hasPlaybackBlocker();
+      function updateControls() {
+        const playing = !video.paused && !video.ended;
+        const text = playing ? '暂停预览' : '播放预览';
+        toggle.setAttribute('aria-pressed', String(playing));
+        toggle.setAttribute('aria-label', text);
+        if (label) label.textContent = text;
+        if (icon) icon.textContent = playing ? 'Ⅱ' : '▶';
+        stage.classList.toggle('is-playing', playing);
+        if (status) status.textContent = feedback || (playing ? '已有复刻案例 · 静音播放中' : defaultStatus);
+      }
+      function pause() {
+        playRequest += 1;
+        pending = false;
+        video.pause();
+        updateControls();
+      }
+      function load() {
+        if (loaded) return;
+        const source = video.dataset.src;
+        if (!source) return;
+        video.src = source;
+        loaded = true;
+        video.load();
+      }
+      function play() {
+        if (pending || blocked() || needsRetry) return;
+        load();
+        if (!loaded) return;
+        const request = ++playRequest;
+        pending = true;
+        video.muted = true;
+        video.play().then(() => {
+          if (request !== playRequest) return;
+          pending = false;
+          if (blocked() || userPaused) pause();
+          else updateControls();
+        }).catch(() => {
+          if (request !== playRequest) return;
+          pending = false;
+          if (!blocked() && !userPaused) {
+            needsRetry = true;
+            feedback = '预览暂未启动，点击“播放预览”重试。';
+          }
+          updateControls();
+        });
+      }
+      function sync() {
+        if (blocked() || userPaused || (!manuallyStarted && !allowsAutoplay())) pause();
+        else play();
+      }
+      toggle.addEventListener('click', () => {
+        if (!video.paused || pending) {
+          userPaused = true;
+          feedback = '';
+          pause();
+        } else {
+          userPaused = false;
+          manuallyStarted = true;
+          needsRetry = false;
+          feedback = '';
+          play();
+        }
+      });
+      video.addEventListener('playing', () => {
+        if (blocked() || userPaused) return pause();
+        feedback = '';
+        updateControls();
+      });
+      video.addEventListener('pause', updateControls);
+      video.addEventListener('ended', updateControls);
+      video.addEventListener('error', () => {
+        needsRetry = true;
+        feedback = '视频暂时无法播放，可点击重试或查看完整案例。';
+        pause();
+        // Reset the failed source so the poster remains available and the button can retry.
+        video.removeAttribute('src');
+        loaded = false;
+        video.load();
+      });
+      const player = { stage, sync, setVisible(visible) { inView = visible; sync(); } };
+      ambientPlayers.push(player);
+      updateControls();
+    });
+    const syncAmbient = () => ambientPlayers.forEach(player => player.sync());
+    if ('IntersectionObserver' in window) {
+      const playersByStage = new Map(ambientPlayers.map(player => [player.stage, player]));
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => playersByStage.get(entry.target)?.setVisible(entry.isIntersecting && entry.intersectionRatio >= 0.15));
+      }, { threshold: [0, 0.15] });
+      ambientPlayers.forEach(player => observer.observe(player.stage));
+    } else {
+      const updateVisibility = () => ambientPlayers.forEach(player => {
+        const bounds = player.stage.getBoundingClientRect();
+        player.setVisible(bounds.bottom > 0 && bounds.top < window.innerHeight && bounds.right > 0 && bounds.left < window.innerWidth);
+      });
+      window.addEventListener('scroll', updateVisibility, { passive: true });
+      window.addEventListener('resize', updateVisibility, { passive: true });
+      updateVisibility();
+    }
+    document.addEventListener('visibilitychange', syncAmbient);
+    new MutationObserver(syncAmbient).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    dialogs.forEach(dialog => new MutationObserver(syncAmbient).observe(dialog, { attributes: true, attributeFilter: ['open'] }));
+    motionPreference.addEventListener?.('change', syncAmbient);
+    connection?.addEventListener?.('change', syncAmbient);
+  }
   $$('[data-video-workbench]').forEach(workbench => {
     const tabs = $$('[data-video-kind]',workbench);
     function select(tab) {
@@ -161,7 +293,9 @@
         }
         fields.hidden=true;success.hidden=false;
         $('.receipt',success).textContent='提交编号：'+submissionId.slice(0,8).toUpperCase();
-        success.focus();track(kind==='partner'?'partner_application_success':'lead_submit_success');
+        success.focus({preventScroll:true});
+        success.scrollIntoView({block:'center',behavior:'instant'});
+        track(kind==='partner'?'partner_application_success':'lead_submit_success');
       }catch(error){
         fail(error.name==='TimeoutError' || error.name==='AbortError' ? '连接超时，暂未确认提交结果。请点击重试，系统会核对本次提交，避免重复。' : error instanceof TypeError ? '网络连接失败，请检查网络后重试。已填写的信息仍保留。' : error.message);
         track('submission_error',{kind});

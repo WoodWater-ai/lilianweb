@@ -1,0 +1,307 @@
+(() => {
+  'use strict';
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  // Deliberately send only non-personal event attributes. No contact data in analytics.
+  function track(event, attributes = {}) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event, page: document.body.dataset.page, ...attributes });
+  }
+  const dialogs = $$('dialog');
+  const openers = new WeakMap();
+  function openDialog(dialog) {
+    openers.set(dialog, document.activeElement);
+    dialog.showModal();
+    document.body.classList.add('dialog-open');
+  }
+  function closeDialog(dialog) { dialog.close(); }
+  dialogs.forEach(dialog => {
+    $('[data-close]', dialog).addEventListener('click', () => closeDialog(dialog));
+    dialog.addEventListener('click', event => {
+      const bounds = dialog.getBoundingClientRect();
+      if (event.target === dialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) closeDialog(dialog);
+    });
+    dialog.addEventListener('close', () => {
+      if (dialog.id === 'media-dialog') {
+        $$('video', dialog).forEach(video => { video.pause(); video.removeAttribute('src'); video.load(); });
+        $('.media-body', dialog).replaceChildren();
+      }
+      if (!dialogs.some(item => item.open)) document.body.classList.remove('dialog-open');
+      const opener = openers.get(dialog);
+      if (opener?.isConnected) opener.focus({ preventScroll: true });
+    });
+  });
+  $$('[data-inquiry]').forEach(button => button.addEventListener('click', () => {
+    openDialog($('#inquiry-dialog'));
+    track('inquiry_open');
+  }));
+  $$('[data-wechat]').forEach(button => button.addEventListener('click', () => {
+    openDialog($('#wechat-dialog'));
+    track('contact_qr_view');
+  }));
+  const menu = $('.menu-toggle');
+  const nav = $('#primary-nav');
+  function closeMenu() {nav.classList.remove('open'); menu.setAttribute('aria-expanded','false'); menu.setAttribute('aria-label','展开导航');}
+  menu.addEventListener('click', () => {
+    const expanded = menu.getAttribute('aria-expanded') !== 'true';
+    menu.setAttribute('aria-expanded', String(expanded));
+    menu.setAttribute('aria-label', expanded ? '收起导航' : '展开导航');
+    nav.classList.toggle('open', expanded);
+  });
+  document.addEventListener('keydown', event => {if(event.key==='Escape') closeMenu();});
+  $$('a', nav).forEach(a => a.addEventListener('click', closeMenu));
+  $$('[data-image],[data-video]').forEach(button => button.addEventListener('click', () => {
+    const dialog = $('#media-dialog');
+    const body = $('.media-body', dialog);
+    body.replaceChildren();
+    if (button.dataset.video) {
+      const video = document.createElement('video');
+      video.src = button.dataset.video;
+      video.poster = button.dataset.poster || '';
+      video.controls = true; video.playsInline = true; video.preload = 'metadata';
+      video.setAttribute('aria-label',button.dataset.caption || '视频预览');
+      video.addEventListener('error', () => {
+        const error = document.createElement('p');
+        error.textContent = '视频暂时无法播放，请稍后重试或联系我们了解演示。';
+        if(!$('.media-error',body)){error.className='media-error';body.append(error);}
+      });
+      body.append(video);
+      openDialog(dialog);
+      video.play().catch(() => {});
+      track('video_open');
+    } else {
+      const image = document.createElement('img');
+      image.src = button.dataset.image;
+      image.alt = button.dataset.caption || '素材预览';
+      body.append(image); openDialog(dialog);
+      track('image_preview');
+    }
+    $('.media-caption',dialog).textContent=button.dataset.caption || '';
+  }));
+  $$('[data-filter]').forEach(button => button.addEventListener('click', () => {
+    $$('[data-filter]').forEach(item => {
+      const active = item === button;
+      item.classList.toggle('active',active);item.setAttribute('aria-pressed',String(active));
+    });
+    $$('[data-category]').forEach(item => {item.hidden=button.dataset.filter!=='all' && item.dataset.category!==button.dataset.filter;if(item.hidden)$$('video',item).forEach(video=>video.pause());});
+    track('case_filter',{category:button.dataset.filter});
+  }));
+  const tabs=$$('[data-tab]');
+  function selectTab(tab) {
+    tabs.forEach(item=>{const active=item===tab;item.setAttribute('aria-selected',String(active));item.tabIndex=active?0:-1;$('#'+item.getAttribute('aria-controls')).hidden=!active;});
+  }
+  tabs.forEach((tab,index)=>{
+    tab.addEventListener('click',()=>selectTab(tab));
+    tab.addEventListener('keydown',event=>{
+      let next;
+      if(event.key==='ArrowRight')next=(index+1)%tabs.length;
+      if(event.key==='ArrowLeft')next=(index+tabs.length-1)%tabs.length;
+      if(event.key==='Home')next=0;
+      if(event.key==='End')next=tabs.length-1;
+      if(next!==undefined){event.preventDefault();selectTab(tabs[next]);tabs[next].focus();}
+    });
+  });
+  const ambientStages = $$('[data-ambient-stage]');
+  if (ambientStages.length) {
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const connection = navigator.connection;
+    const ambientPlayers = [];
+    const hasPlaybackBlocker = () => document.hidden || document.body.classList.contains('dialog-open') || dialogs.some(dialog => dialog.open);
+    const allowsAutoplay = () => !motionPreference.matches && !connection?.saveData;
+    ambientStages.forEach(stage => {
+      const video = $('[data-ambient-video]', stage);
+      const toggle = $('[data-ambient-toggle]', stage);
+      const status = $('[data-ambient-status]', stage);
+      if (!video || !toggle) return;
+      const icon = $('[data-ambient-icon]', toggle);
+      const label = $('[data-ambient-label]', toggle);
+      const defaultStatus = status?.textContent || '已有复刻案例 · 静音预览';
+      let inView = false;
+      let loaded = false;
+      let userPaused = false;
+      let manuallyStarted = false;
+      let needsRetry = false;
+      let pending = false;
+      let playRequest = 0;
+      let feedback = '';
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      const blocked = () => !inView || hasPlaybackBlocker();
+      function updateControls() {
+        const playing = !video.paused && !video.ended;
+        const text = playing ? '暂停预览' : '播放预览';
+        toggle.setAttribute('aria-pressed', String(playing));
+        toggle.setAttribute('aria-label', text);
+        if (label) label.textContent = text;
+        if (icon) icon.textContent = playing ? 'Ⅱ' : '▶';
+        stage.classList.toggle('is-playing', playing);
+        if (status) status.textContent = feedback || (playing ? '已有复刻案例 · 静音播放中' : defaultStatus);
+      }
+      function pause() {
+        playRequest += 1;
+        pending = false;
+        video.pause();
+        updateControls();
+      }
+      function load() {
+        if (loaded) return;
+        const source = video.dataset.src;
+        if (!source) return;
+        video.src = source;
+        loaded = true;
+        video.load();
+      }
+      function play() {
+        if (pending || blocked() || needsRetry) return;
+        load();
+        if (!loaded) return;
+        const request = ++playRequest;
+        pending = true;
+        video.muted = true;
+        video.play().then(() => {
+          if (request !== playRequest) return;
+          pending = false;
+          if (blocked() || userPaused) pause();
+          else updateControls();
+        }).catch(() => {
+          if (request !== playRequest) return;
+          pending = false;
+          if (!blocked() && !userPaused) {
+            needsRetry = true;
+            feedback = '预览暂未启动，点击“播放预览”重试。';
+          }
+          updateControls();
+        });
+      }
+      function sync() {
+        if (blocked() || userPaused || (!manuallyStarted && !allowsAutoplay())) pause();
+        else play();
+      }
+      toggle.addEventListener('click', () => {
+        if (!video.paused || pending) {
+          userPaused = true;
+          feedback = '';
+          pause();
+        } else {
+          userPaused = false;
+          manuallyStarted = true;
+          needsRetry = false;
+          feedback = '';
+          play();
+        }
+      });
+      video.addEventListener('playing', () => {
+        if (blocked() || userPaused) return pause();
+        feedback = '';
+        updateControls();
+      });
+      video.addEventListener('pause', updateControls);
+      video.addEventListener('ended', updateControls);
+      video.addEventListener('error', () => {
+        needsRetry = true;
+        feedback = '视频暂时无法播放，可点击重试或查看完整案例。';
+        pause();
+        // Reset the failed source so the poster remains available and the button can retry.
+        video.removeAttribute('src');
+        loaded = false;
+        video.load();
+      });
+      const player = { stage, sync, setVisible(visible) { inView = visible; sync(); } };
+      ambientPlayers.push(player);
+      updateControls();
+    });
+    const syncAmbient = () => ambientPlayers.forEach(player => player.sync());
+    if ('IntersectionObserver' in window) {
+      const playersByStage = new Map(ambientPlayers.map(player => [player.stage, player]));
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => playersByStage.get(entry.target)?.setVisible(entry.isIntersecting && entry.intersectionRatio >= 0.15));
+      }, { threshold: [0, 0.15] });
+      ambientPlayers.forEach(player => observer.observe(player.stage));
+    } else {
+      const updateVisibility = () => ambientPlayers.forEach(player => {
+        const bounds = player.stage.getBoundingClientRect();
+        player.setVisible(bounds.bottom > 0 && bounds.top < window.innerHeight && bounds.right > 0 && bounds.left < window.innerWidth);
+      });
+      window.addEventListener('scroll', updateVisibility, { passive: true });
+      window.addEventListener('resize', updateVisibility, { passive: true });
+      updateVisibility();
+    }
+    document.addEventListener('visibilitychange', syncAmbient);
+    new MutationObserver(syncAmbient).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    dialogs.forEach(dialog => new MutationObserver(syncAmbient).observe(dialog, { attributes: true, attributeFilter: ['open'] }));
+    motionPreference.addEventListener?.('change', syncAmbient);
+    connection?.addEventListener?.('change', syncAmbient);
+  }
+  $$('[data-video-workbench]').forEach(workbench => {
+    const tabs = $$('[data-video-kind]',workbench);
+    function select(tab) {
+      $$('video',workbench).forEach(video=>video.pause());
+      tabs.forEach(item=>{const active=item===tab;item.classList.toggle('active',active);item.setAttribute('aria-selected',String(active));item.tabIndex=active?0:-1;});
+      $$('[data-video-panel]',workbench).forEach(panel=>{panel.hidden=panel.dataset.videoPanel!==tab.dataset.videoKind;});
+    }
+    tabs.forEach((tab,index)=>{
+      tab.addEventListener('click',()=>select(tab));
+      tab.addEventListener('keydown',event=>{
+        if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
+        event.preventDefault();const next=tabs[event.key==='Home'?0:event.key==='End'?tabs.length-1:(index+1)%tabs.length];select(next);next.focus();
+      });
+    });
+    $('[data-replica-play]',workbench).addEventListener('click',()=>{
+      const video=$('[data-replica-result]',workbench);
+      $('[data-replica-status]',workbench).textContent='正在展示已有复刻案例，非实时生成，不消耗图片次数。';
+      video.play().catch(()=>{$('[data-replica-status]',workbench).textContent='请点击输出视频的播放按钮查看已有案例。';});
+    });
+    $('[data-image-video-preview]',workbench).addEventListener('click',()=>{
+      $('[data-image-video-status]',workbench).textContent='对应的图生视频结果尚未加入。当前只展示首帧输入示意，不使用复刻视频代替。';
+    });
+  });
+  function freshId() {return crypto.randomUUID();}
+  $$('.lead-form').forEach(form=>{
+    let submissionId=freshId();
+    let previousPayload='';
+    let pending=false;
+    const fields=$('.form-fields',form), success=$('.form-success',form), status=$('.form-status',form), submit=$('[type=submit]',form);
+    const originalLabel=submit.innerHTML;
+    const control=name=>form.elements.namedItem(name);
+    const value=name=>String(control(name)?.value || '').trim();
+    form.addEventListener('input',event=>{event.target.removeAttribute('aria-invalid');});
+    function fail(message,name){status.textContent=message;if(name){control(name).setAttribute('aria-invalid','true');control(name).focus();}}
+    form.addEventListener('submit',async event=>{
+      event.preventDefault();if(pending)return;
+      status.textContent='';
+      const kind=form.dataset.kind;
+      const phone=value('phone').replace(/[\s-]/g,'').replace(/^\+86/,'');
+      if(!value('company'))return fail('请填写公司或团队名称。','company');
+      if(kind==='partner'&&!value('name'))return fail('请填写你的姓名。','name');
+      if(!/^1[3-9]\d{9}$/.test(phone))return fail('请填写有效的中国大陆手机号码。','phone');
+      if(kind==='partner'&&!value('city'))return fail('请填写意向合作城市。','city');
+      if(!control('consent').checked)return fail('请阅读隐私说明，并勾选同意联系。','consent');
+      const payload={kind,company:value('company'),name:value('name'),phone,city:value('city'),solution:value('solution'),message:value('message'),consent:true,source:location.pathname,website:value('website')};
+      const serialized=JSON.stringify(payload);
+      if(previousPayload && previousPayload!==serialized)submissionId=freshId();
+      previousPayload=serialized;
+      pending=true;submit.disabled=true;form.setAttribute('aria-busy','true');submit.textContent='正在提交，请稍候…';
+      $$('input,select,textarea',form).forEach(input=>{input.disabled=true;});
+      try {
+        const response=await fetch('/api/website/submissions',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...payload,submissionId}),signal:AbortSignal.timeout(45000)});
+        const result=await response.json().catch(()=>null);
+        if(!response.ok || result?.ok!==true){
+          if(response.status===429)throw new Error('提交较频繁，请稍后再试，或直接扫码联系。');
+          if(response.status===400)throw new Error(result?.message || '请检查填写的信息后重试。');
+          throw new Error('暂未确认提交成功，请保留当前页面稍后重试，或直接扫码联系。');
+        }
+        fields.hidden=true;success.hidden=false;
+        $('.receipt',success).textContent='提交编号：'+submissionId.slice(0,8).toUpperCase();
+        success.focus();track(kind==='partner'?'partner_application_success':'lead_submit_success');
+      }catch(error){
+        fail(error.name==='TimeoutError' || error.name==='AbortError' ? '连接超时，暂未确认提交结果。请点击重试，系统会核对本次提交，避免重复。' : error instanceof TypeError ? '网络连接失败，请检查网络后重试。已填写的信息仍保留。' : error.message);
+        track('submission_error',{kind});
+      }finally{pending=false;submit.disabled=false;form.removeAttribute('aria-busy');submit.innerHTML=originalLabel;$$('input,select,textarea',form).forEach(input=>{input.disabled=false;});}
+    });
+    $('[data-form-reset]',form).addEventListener('click',()=>{
+      form.reset();submissionId=freshId();previousPayload='';status.textContent='';success.hidden=true;fields.hidden=false;control('company').focus();
+    });
+  });
+  track('website_page_view');
+})();
